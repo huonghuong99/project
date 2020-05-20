@@ -16,6 +16,7 @@ class CreateSanGhepChiTietTable extends Migration
         Schema::create('san_ghep_chi_tiet', function (Blueprint $table) {
             $table->bigInteger('ma_san_ghep');
             $table->bigInteger('ma_san_don');
+            $table->primary(['ma_san_ghep', 'ma_san_don']);
         });
     }
 

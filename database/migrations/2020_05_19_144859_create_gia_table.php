@@ -14,12 +14,12 @@ class CreateGiaTable extends Migration
     public function up()
     {
         Schema::create('gia', function (Blueprint $table) {
-            $table->id('ma_san_bong');
-            $table->bigInteger('ma_tieu_chuan');
-            $table->time('khung_gio_bat_dau');
-            $table->time('khung_gio_ket_thuc');
+            $table->bigInteger('ma_san_bong')->unsigned();
+            $table->bigInteger('ma_tieu_chuan')->unsigned();
+            $table->datetime('khung_gio_bat_dau');
+            $table->datetime('khung_gio_ket_thuc');
             $table->integer('gia_cho_30_phut');
-            $table->timestamps();
+            $table->primary(['ma_san_bong', 'ma_tieu_chuan', 'khung_gio_bat_dau', 'khung_gio_ket_thuc'], 'gia_primary_key');
         });
     }
 
