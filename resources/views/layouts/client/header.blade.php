@@ -2,8 +2,8 @@
 	<div class="animationload">
 		<div class="loader"></div>
 	</div>
-	
-	
+
+
 	<!-- NAVBAR SECTION -->
 	<div class="navbar navbar-main navbar-fixed-top">
 		<div class="header-top">
@@ -27,7 +27,7 @@
 							<a href="#" title=""><span class="fa fa-pinterest"></span></a>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -38,8 +38,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" /></a>
-				
+				<a class="navbar-brand" href="{{route('index')}}"><img src="{{ asset('assets/images/logo.png') }}" alt="" /></a>
+
 			</div>
 			<nav class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,31 @@
 					<li><a href="gallery.html">GALLERY</a></li>
 					<li><a href="news.html">NEWS</a></li>
 					<li><a href="shop.html">SHOP</a></li>
-					<li><a href="contact.html">CONTACT</a></li>
+                    @guest
+                        <li>
+                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li>
+                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li>
+                            <a href="{{ route('profile.index') }}">Profile</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    @endguest
 				</ul>
 			</nav>
 		</div>
